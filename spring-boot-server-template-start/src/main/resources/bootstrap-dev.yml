@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: system-om
+  cloud:
+    nacos:
+      config: # Nacos 配置管理地址 配置文件命名规范{spring.application.name}-{spring.profiles.active}.yml
+        namespace: 62aea7a8-333e-443a-af24-74979f598577
+        server-addr: 127.0.0.1:18848
+        file-extension: yml
+        username: demo # 更换自己的在用户名
+        password: demo # 更换自己的密码x
+        core:
+          auth:
+            system:
+              type: nacos
+            enabled: true
+      discovery:
+        server-addr: 127.0.0.1:18848
+        namespace: 62aea7a8-333e-443a-af24-74979f598577
+        watch:
+          enabled: true
+        username: demo # 更换自己的在用户名
+        password: demo # 更换自己的密码x

@@ -1,0 +1,176 @@
+server:
+  port: 8080  #容器中要求使用 8080端口
+spring:
+  application:
+    name: system-om
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+    # 配置管理 如果不能使用Nacos，那可以创建 bootstrap-{env}.yml  env：dev，test，stg，prod
+    # 四个配置文件存放不同环境的配置，通过启动命令参数 -Dspring.profiles.active=dev 选择指定配置
+    #
+  cloud:
+    nacos:
+      config: # Nacos 配置管理地址 配置文件命名规范{spring.application.name}-{spring.profiles.active}.yml
+        enabled: false
+        refresh-enabled: false
+        namespace: 62aea7a8-333e-443a-af24-74979f598577
+        server-addr: 127.0.0.1:18848
+        file-extension: yml
+        username: demo # 更换自己的在用户名
+        password: demo # 更换自己的密码x
+        core:
+          auth:
+            system:
+              type: nacos
+            enabled: true
+      discovery:
+        enabled: false
+        register-enabled: false
+        server-addr: 127.0.0.1:18848
+        namespace: 62aea7a8-333e-443a-af24-74979f598577
+        watch:
+          enabled: true
+        username: demo
+        password: demo
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/demo?prepStmtCacheSize=512&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: demo
+    password: demo
+    hikari:
+      auto-commit: true
+      pool-name: mysql-hikari
+      connection-test-query: SELECT 1
+      minimum-idle: 5
+      maximum-pool-size: 20
+
+  redis:
+    database: 0
+    cluster:
+      nodes:
+        - 192.168.0.1:9001
+        - 192.168.0.1:9002
+        - 192.168.0.1:9003
+        - 192.168.0.1:9004
+        - 192.168.0.1:9005
+        - 192.168.0.1:9006
+    jedis:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+    timeout: 6000
+
+
+  kafka:
+    #Default producer
+    producer:
+      # Kafka服务器
+      bootstrap-servers: 192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092
+      retries: 3
+      acks: all
+      batch-size: 0
+      buffer-memory: 10240
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+    cluster01:
+      consumer:
+        enabled: false
+        bootstrap-servers: 192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092
+        group-id: system-om
+        demo-topic: phoenix_tbox_realtime
+
+    cluster02:
+      consumer:
+        enabled: false
+        bootstrap-servers: 192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092
+        group-id: system-om
+
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    auto-mapping-unknown-column-behavior: none
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+
+pagehelper:
+  supportMethodsArguments: true
+  reasonable: false
+  helperDialect: mysql
+  params: count=countSql
+
+## shenyu api 网关暴露接口
+shenyu:
+  register:
+    enabled: false # 本地不注册到shenyu
+    registerType: nacos
+    serverLists: 127.0.0.1:18848
+    props:
+      nacosNameSpace: d1bd133f-f415-404b-8e2c-60847ce426d4
+      username: demo
+      password: demopw
+  client:
+    springCloud:
+      props:
+        contextPath: /om/api
+        isFull: false
+
+
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 100000
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 20000
+
+
+
+#SQL 日志级别  在生产环境调整为INFO 或者删掉
+logging:
+  level:
+    org:
+      zhangyinhao:
+        om:
+          dal: debug
+
+swagger: #生产环境请配置成false 或者删除
+  enable: true
+  basePackage: org.zhangyinhao.om.controller
+
+
+## 监控指标暴露
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  server:
+    port: 9999
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    shutdown:
+      enabled: true #打开shutdown端点
+    health:
+      show-details: always #获得健康检查中所有指标的详细信息
+
+
+

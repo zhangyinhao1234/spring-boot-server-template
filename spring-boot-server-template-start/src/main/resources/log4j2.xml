@@ -1,0 +1,30 @@
+<configuration monitorInterval="5">
+    <Properties>
+        <property name="logPath">/logs/system-om</property>
+        <property name="ConsolePATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{PtxId}] %-5level %logger : %m%n</property>
+        <property name="PATTERN">{"appName":"${env:APP_NAME}","podName":"${env:POD_NAME}","podNamespace":"${env:POD_NAMESPACE}","level":"%-5level","logTime": "%d{yyyy-MM-dd HH:mm:ss.SSS}","env": "${sys:spring.profiles.active}","thread":"%thread", "RID":"%X{request_id}","TxId":"%X{PtxId}","message":"%enc{%m}{JSON}","Exception":"%enc{%ex}{JSON}" }%n</property>
+    </Properties>
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${ConsolePATTERN}</pattern>
+            </PatternLayout>
+        </console>
+        <RollingRandomAccessFile name="FileLog" fileName="${logPath}/info.log" filePattern="${logPath}/info-%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout>
+                <pattern>${PATTERN}</pattern>
+            </PatternLayout>
+            <DefaultRolloverStrategy max="10"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </appenders>
+
+    <loggers>
+        <AsyncRoot level="INFO" includeLocation="true">
+            <appenderref ref="Console"/>
+            <appenderref ref="FileLog"/>
+        </AsyncRoot>
+    </loggers>
+</configuration>
