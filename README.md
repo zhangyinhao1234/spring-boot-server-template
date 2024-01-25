@@ -6,7 +6,7 @@
 * SpringBoot 服务端模板工程，统一约束规范，提高研发效率、降低生产风险
 
 
-## 集成的工具和库
+## SpringBoot 2.3.12.RELEASE 集成的工具和库
 * SpringBoot 2.3.12.RELEASE
 * SpringCloud Hoxton.SR12
 * 配置管理和服务注册发现：Nacos 2.2.7.RELEASE
@@ -19,6 +19,21 @@
 * 消息队列：Kafka 2.5.1
 * 日志记录：log4j2 2.13.3
 * Feign openFeign 10.12
+
+## SpringBoot 3.1.8 集成的工具和库
+* SpringBoot 3.1.8
+* SpringCloud 2022.0.3
+* 配置管理和服务注册发现：Nacos 2022.0.0.0
+* 数据库驱动：mysql
+* 数据库连接池：HikariCP 4.0.3
+* ORM框架：mybatis-plus-boot-starter 3.5.5
+* 分页插件：pagehelper-spring-boot-starter 1.4.7
+* 接口文档: springdoc + knife4j
+* 监控指标数据暴露插件：micrometer-registry-prometheus 1.11.7
+* API网关注册：shenyu 2.5.0
+* 消息队列：Kafka 3.4.1
+* 日志记录：log4j2 2.20.0
+
 
 
 # 使用方法
@@ -41,7 +56,7 @@ mvn clean install deploy
 * 当有新的项目，需要使用模板创建工程的时候
 ```linux
 # 通过模板创建项目
-mvn archetype:generate -D archetypeGroupId=org.zhangyinhao.template -D archetypeArtifactId=spring-boot-server-template-archetype -D archetypeCatalog=remote -D archetypeVersion=3.1.8-SNAPSHOT -D interactiveMode=false -DarchetypeCatalog=remote -D groupId=com.xxx.dd -D artifactId=user-center -D version=0.0.1-SNAPSHOT -D package=com.xxx.dd.user
+mvn archetype:generate -D archetypeGroupId=org.zhangyinhao.template -D archetypeArtifactId=spring-boot-server-template-archetype -D archetypeCatalog=remote -D archetypeVersion=1.0-SNAPSHOT -D interactiveMode=false -DarchetypeCatalog=remote -D groupId=com.xxx.dd -D artifactId=user-center -D version=0.0.1-SNAPSHOT -D package=com.xxx.dd.user
 ```
 
 
