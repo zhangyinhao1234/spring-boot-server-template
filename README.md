@@ -7,18 +7,18 @@
 
 
 ## 集成的工具和库
-* SpringBoot 3.1.8
-* SpringCloud 2022.0.3
-* 配置管理和服务注册发现：Nacos 2022.0.0.0
+* SpringBoot 2.3.12.RELEASE
+* SpringCloud Hoxton.SR12
+* 配置管理和服务注册发现：Nacos 2.2.7.RELEASE
 * 数据库驱动：mysql
 * 数据库连接池：HikariCP 4.0.3
-* ORM框架：mybatis-plus-boot-starter 3.5.5
-* 分页插件：pagehelper-spring-boot-starter 1.4.7
-* 接口文档: springdoc + knife4j
-* 监控指标数据暴露插件：micrometer-registry-prometheus 1.11.7
+* ORM框架：mybatis-plus 3.4.2
+* 分页插件：pagehelper 1.4.2
+* 监控指标数据暴露插件：micrometer 1.6.13
 * API网关注册：shenyu 2.5.0
-* 消息队列：Kafka 3.4.1
-* 日志记录：log4j2 2.20.0
+* 消息队列：Kafka 2.5.1
+* 日志记录：log4j2 2.13.3
+* Feign openFeign 10.12
 
 
 # 使用方法
