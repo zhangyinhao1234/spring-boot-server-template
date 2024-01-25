@@ -7,15 +7,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>3.1.8</version>
         <relativePath/>
     </parent>
 
-
-
     <groupId>org.zhangyinhao.template</groupId>
     <artifactId>spring-boot-server-template</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>3.1.8-SNAPSHOT</version>
     <packaging>pom</packaging>
 
 
@@ -28,33 +26,29 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-        <swagger.fox.version>3.0.0</swagger.fox.version>
-        <lombok.version>1.18.22</lombok.version>
-        <javax-validation.version>2.0.1.Final</javax-validation.version>
-        <servlet-api.version>2.5</servlet-api.version>
-        <fastjson1.version>1.2.83</fastjson1.version>
-
-        <swagger2.version>2.9.2</swagger2.version>
-        <spring.cloud.dubbo.version>2.2.7.RELEASE</spring.cloud.dubbo.version>
+        <spring-boot.version>3.1.8</spring-boot.version>
+        <spring-cloud.version>2022.0.3</spring-cloud.version>
+        <spring-cloud-starter-bootstrap.version>4.0.4</spring-cloud-starter-bootstrap.version>
+        <spring.cloud.nacos.version>2022.0.0.0</spring.cloud.nacos.version>
         <HikariCP.version>4.0.3</HikariCP.version>
-        <spring.boot.mybatis.version>2.2.2</spring.boot.mybatis.version>
+        <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
         <spring.boot.mapper.version>4.2.1</spring.boot.mapper.version>
-        <pagehelper.version>1.4.2</pagehelper.version>
-        <netflix.ribbon.version>2.2.10.RELEASE</netflix.ribbon.version>
-        <mybatis-plus.version>3.4.2</mybatis-plus.version>
-        <hutool.version>5.8.4</hutool.version>
+        <pagehelper.version>1.4.7</pagehelper.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <micrometer-registry-prometheus.version>1.11.7</micrometer-registry-prometheus.version>
+        <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+        <javax-validation.version>2.0.1.Final</javax-validation.version>
+        <fastjson1.version>1.2.83</fastjson1.version>
         <jakarta.version>2.0.1</jakarta.version>
-        <jackson-core.version>2.12.3</jackson-core.version>
+        <guava.version>33.0.0-jre</guava.version>
         <apache.commons-lang3.version>3.10</apache.commons-lang3.version>
-        <micrometer-prometheus.version>1.6.13</micrometer-prometheus.version>
-        <junit.version>4.12</junit.version>
+        <springdoc.version>2.0.2</springdoc.version>
+        <knife4j.version>4.4.0</knife4j.version>
+        <netflix.ribbon.version>2.2.10.RELEASE</netflix.ribbon.version>
         <shenyu.version>2.5.0</shenyu.version>
-
+        <junit.version>4.12</junit.version>
         <zhangyinhao-result.version>1.0.0-RELEASE</zhangyinhao-result.version>
 
     </properties>
@@ -63,12 +57,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -86,21 +74,24 @@
             </dependency>
 
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${swagger.fox.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger2.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
+
+            <!--基于knife4j-openapi3的api接口文档生成-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger2.version}</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>javax.validation</groupId>
@@ -109,10 +100,9 @@
             </dependency>
 
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>${servlet-api.version}</version>
-                <scope>provided</scope>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.annotation-api.version}</version>
             </dependency>
 
             <dependency>
@@ -121,11 +111,6 @@
                 <version>${fastjson1.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson-core.version}</version>
-            </dependency>
             <dependency>
                 <groupId>jakarta.json</groupId>
                 <artifactId>jakarta.json-api</artifactId>
@@ -138,17 +123,23 @@
                 <version>${netflix.ribbon.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bootstrap</artifactId>
+                <version>${spring-cloud-starter-bootstrap.version}</version>
+            </dependency>
             <!-- SpringCloud Alibaba Nacos -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${spring.cloud.dubbo.version}</version>
+                <version>${spring.cloud.nacos.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring.cloud.dubbo.version}</version>
+                <version>${spring.cloud.nacos.version}</version>
             </dependency>
 
 
@@ -169,6 +160,7 @@
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${spring.boot.mapper.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -193,23 +185,18 @@
             </dependency>
 
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-registry-prometheus</artifactId>
-                <version>${micrometer-prometheus.version}</version>
+                <version>${micrometer-registry-prometheus.version}</version>
             </dependency>
 
+
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
+
 
             <!-- API网关  https://shenyu.apache.org/zh/docs/index/  -->
             <dependency>
@@ -255,6 +242,13 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -269,7 +263,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.11.0</version>
             </plugin>
         </plugins>
     </build>

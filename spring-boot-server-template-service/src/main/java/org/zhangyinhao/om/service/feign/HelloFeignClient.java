@@ -18,8 +18,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zhangyinhao.base.result.BaseResult;
 
-@FeignClient(name = "system-module",contextId = "HelloFeignClient01",primary = false,
-        qualifier = "helloFeignClient"
+@FeignClient(name = "system-server-01",contextId = "HelloFeignClient01",primary = false,
+        qualifiers = "helloFeignClient"
 )
 public interface HelloFeignClient {
 

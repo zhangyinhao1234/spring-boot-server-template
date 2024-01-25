@@ -34,7 +34,7 @@ public class FeignClientProxy {
 
     @Primary
     @Bean
-    public HelloFeignClient suppliersFeignProxyClient() {
+    public HelloFeignClient helloFeignProxyClient() {
         FeignClientInvocationHandler invocationHandler = new FeignClientInvocationHandler();
         HelloFeignClient proxyClient = (HelloFeignClient) invocationHandler.bind(helloFeignClient);
         return proxyClient;

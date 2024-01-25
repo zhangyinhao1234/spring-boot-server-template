@@ -26,7 +26,7 @@ import org.zhangyinhao.om.api.req.CreateOrderReq;
 import org.zhangyinhao.om.api.req.QueryOrderReq;
 import org.zhangyinhao.om.api.rsp.OrderDTO;
 import org.zhangyinhao.om.dal.order.Order;
-import org.zhangyinhao.om.dal.order.OrderDAO;
+import org.zhangyinhao.om.dal.order.OrderMapper;
 import org.zhangyinhao.om.service.execute.IOrderService;
 
 import java.util.Date;
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements IOrderService {
 
     @Autowired
-    private OrderDAO exampleMapper;
+    private OrderMapper exampleMapper;
 
     @Override
     public OrderDTO getById(Long id) {

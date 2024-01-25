@@ -12,53 +12,55 @@
  *    limitations under the License.
  */
 package org.zhangyinhao.om.config;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
 
-import org.springframework.beans.factory.annotation.Value;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
 
-    @Value("${swagger.enable:false}")
-    private Boolean swaggerEnable;
+    @Bean
+    public OpenAPI springShopOpenAPI() {
+        return new OpenAPI()
+                .info(new Info().title("模版工程")
+                        .description("模版工程API文档")
+                        .version("v1")
+                        .license(new License().name("Apache 2.0")
+                                .url("http://springdoc.org")))
+                .externalDocs(new ExternalDocumentation()
+                        .description("外部文档")
+                        .url("https://springshop.wiki.github.org/docs"));
+    }
 
-    @Value("${swagger.basePackage:org.zhangyinhao.om.controller}")
-    private String basePackage;
+
 
     @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                //是否开启 (true 开启  false隐藏。生产环境建议隐藏)
-                .enable(swaggerEnable)
-                .select()
-                //扫描的路径包,设置basePackage会将包下的所有被@Api标记类的所有方法作为api
-                .apis(RequestHandlerSelectors.basePackage(basePackage))
-                //指定路径处理PathSelectors.any()代表所有的路径
-                .paths(PathSelectors.any())
+    public GroupedOpenApi allApi() {
+        return GroupedOpenApi.builder()
+                .group("全部API")
+                .pathsToMatch("/**")
                 .build();
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                //设置文档标题(API名称)
-                .title("XXX项目的接口")
-                //文档描述
-                .description("接口说明")
-                //服务条款URL
-                .termsOfServiceUrl("http://localhost:9000/")
-                //版本号
-                .version("1.0.0")
+    @Bean
+    public GroupedOpenApi integrationApi() {
+        return GroupedOpenApi.builder()
+                .group("系统间集成API")
+                .pathsToMatch("/integration/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi orderManageApi() {
+        return GroupedOpenApi.builder()
+                .group("订单管理")
+                .pathsToMatch("/order/**")
                 .build();
     }
 }

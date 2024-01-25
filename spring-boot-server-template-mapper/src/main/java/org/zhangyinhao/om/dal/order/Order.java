@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 
-@TableName("t_om_order_example")
+@TableName("t_voms_order_example")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -52,7 +52,7 @@ public class Order {
     @TableField(fill = FieldFill.INSERT, updateStrategy = FieldStrategy.NEVER)
     private Date createTime;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE,value="modify_time")
     private Date updateTime;
 
 }

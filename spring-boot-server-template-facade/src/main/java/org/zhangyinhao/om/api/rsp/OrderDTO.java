@@ -14,8 +14,7 @@
  */
 package org.zhangyinhao.om.api.rsp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +24,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-@ApiModel
+@Schema
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,18 +38,18 @@ public class OrderDTO implements Serializable {
     /**
      * 姓名
      */
-    @ApiModelProperty(value = "姓名", example = "张三")
+    @Schema(description = "姓名", example = "张三")
     private String userName;
 
     /**
      * 订单编号
      */
-    @ApiModelProperty(value = "订单编号", example = "1234")
+    @Schema(description = "订单编号", example = "1234")
     private String orderNo;
 
     /**
      * 创建时间
      */
-    @ApiModelProperty(value = "创建时间", example = "date")
+    @Schema(description = "创建时间", example = "date")
     private Date createTime;
 }

@@ -14,6 +14,7 @@
 package org.zhangyinhao.om;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;

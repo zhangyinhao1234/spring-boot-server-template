@@ -26,12 +26,12 @@ import java.util.List;
  * mysql demo
  */
 @Mapper
-public interface OrderDAO extends BaseMapper<Order> {
+public interface OrderMapper extends BaseMapper<Order> {
 
     Order getById(@Param("id") Long id);
 
     List<Order> listByNameAndOrderNo(@Param("userName") String userName, @Param("orderNo") String orderNo);
 
-    @Select("select * from t_om_order_example where user_name=#{userName}")
+    @Select("select * from t_voms_order_example where user_name=#{userName}")
     List<Order> listByName(@Param("userName") String userName);
 }

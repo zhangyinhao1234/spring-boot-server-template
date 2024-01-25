@@ -1,5 +1,6 @@
 package org.zhangyinhao.om.service.mq.consumer;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,7 +17,7 @@ public class Cluster01DemoMessageConsumer {
 
     @KafkaListener(topics = "${spring.kafka.cluster01.consumer.demo-topic}", containerFactory = "kafkaCluster01ContainerFactory")
     public void consumerSingle(List<String> message) {
-        log.info("开始消费Kafka数据：监听到Kafka消息数据条数={}", message.size());
+        log.info("开始消费Kafka数据：监听到Kafka消息数据 = {}", JSON.toJSONString(message));
     }
 
 }

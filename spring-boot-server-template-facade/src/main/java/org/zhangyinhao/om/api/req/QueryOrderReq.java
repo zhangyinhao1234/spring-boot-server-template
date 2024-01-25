@@ -15,8 +15,7 @@
 package org.zhangyinhao.om.api.req;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,22 +30,22 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ApiModel
+@Schema
 public class QueryOrderReq extends QueryPageParam {
 
     private static final long serialVersionUID = 2791135201933801590L;
 
     @NotBlank(message = "userName 不能为空")
-    @ApiModelProperty(name = "用户名",example = "张三")
+    @Schema(description = "用户名",example = "张三")
     private String userName;
 
-    @ApiModelProperty(name = "开始时间",example = "13位时间戳")
+    @Schema(description = "开始时间",example = "13位时间戳")
     private Date beginTime;
 
-    @ApiModelProperty(name = "结束时间",example = "13位时间戳")
+    @Schema(description = "结束时间",example = "13位时间戳")
     private Date endTime;
 
-    @ApiModelProperty(name = "订单编号",example = "1234567")
+    @Schema(description = "订单编号",example = "1234567")
     private String orderNo;
 
 }

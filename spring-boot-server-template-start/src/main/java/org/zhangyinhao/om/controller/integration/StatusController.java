@@ -15,7 +15,9 @@ package org.zhangyinhao.om.controller.integration;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shenyu.client.springcloud.annotation.ShenyuSpringCloudClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +25,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zhangyinhao.base.result.BaseResult;
-import springfox.documentation.annotations.ApiIgnore;
 
 
 @Slf4j
 @RestController
-@ApiIgnore
 @ShenyuSpringCloudClient()
 @RequestMapping("/integration/status")
+@Tag(name = "集成接口健康检查")
 public class StatusController {
 
     @PostMapping(value = "/ok")
-    @ApiOperation(value = "API网关服务检测")
+    @Operation(summary = "API网关服务检测",description = "API网关服务检测")
     BaseResult<String> ok(@RequestBody JSONObject req) {
         log.info("status ok JSONObject = {}", JSON.toJSONString(req));
         return BaseResult.successResult("server is ok !");

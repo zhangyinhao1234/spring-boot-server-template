@@ -13,8 +13,8 @@
  */
 package org.zhangyinhao.om.api;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,28 +28,28 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@Api(value = " OrderFacade", tags = "订单服务接口例子")
+@Tag(name = "订单服务接口例子",description = "订单服务接口例子")
 @RequestMapping("/order/example")
 public interface OrderFacade {
 
     @PostMapping(value = "/test/listAll")
-    @ApiOperation(value = "列出所有数据")
+    @Operation(summary="列出所有数据",description = "列出所有数据")
     BaseResult<List<OrderDTO>> listAll();
 
     @PostMapping(value = "/test/getByName")
-    @ApiOperation(value = "通过名字查询")
+    @Operation(summary="通过名字查询",description = "通过名字查询")
     BaseResult<List<OrderDTO>> getByName(@RequestBody @Valid QueryOrderReq queryOrderReq);
 
     @PostMapping(value = "/test/getByNameAndOrderNo")
-    @ApiOperation(value = "通过名字和订单号查询")
+    @Operation(summary="通过名字和订单号查询",description = "通过名字和订单号查询")
     BaseResult<List<OrderDTO>> getByNameAndOrderNo(@RequestBody @Valid QueryOrderReq queryOrderReq);
 
     @PostMapping(value = "/test/page")
-    @ApiOperation(value = "分页查询")
+    @Operation(summary="分页查询",description = "分页查询")
     BaseResult<PageData<OrderDTO>> page(@RequestBody @Valid QueryOrderReq queryOrderReq);
 
     @PostMapping(value = "/test/save")
-    @ApiOperation(value = "创建Example")
+    @Operation(summary="创建订单",description = "创建Example")
     BaseResult<OrderDTO> createOrder(@RequestBody @Valid CreateOrderReq createOrderReq);
 
 

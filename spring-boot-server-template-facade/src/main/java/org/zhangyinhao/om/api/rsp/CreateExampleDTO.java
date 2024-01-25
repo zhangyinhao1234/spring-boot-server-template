@@ -13,8 +13,7 @@
  */
 package org.zhangyinhao.om.api.rsp;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +23,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 
-@ApiModel
+@Schema
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,14 +34,14 @@ public class CreateExampleDTO implements Serializable {
     /**
      * 姓名
      */
-    @ApiModelProperty(value = "姓名", example = "张三")
+    @Schema(description = "姓名", example = "张三")
     @NotBlank(message = "用户名不能为空")
     private String userName;
 
     /**
      * 订单编号
      */
-    @ApiModelProperty(value = "订单编号", example = "1234")
+    @Schema(description = "订单编号", example = "1234")
     private String orderNo;
 
 
