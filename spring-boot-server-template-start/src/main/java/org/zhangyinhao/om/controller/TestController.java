@@ -1,6 +1,6 @@
 package org.zhangyinhao.om.controller;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @Slf4j
-@Api(value = "testController", tags = "testController")
+@Tag(name = "TestController",description = "TestController")
 public class TestController {
 
     @RequestMapping(value = {"/testError"}, method = {POST, GET})
