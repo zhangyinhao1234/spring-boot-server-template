@@ -19,10 +19,11 @@
 
     <modules>
         <module>spring-boot-server-template-common</module>
-        <module>spring-boot-server-template-facade</module>
-        <module>spring-boot-server-template-mapper</module>
         <module>spring-boot-server-template-service</module>
-        <module>spring-boot-server-template-start</module>
+        <module>spring-boot-server-template-model</module>
+        <module>spring-boot-server-template-domain</module>
+        <module>spring-boot-server-template-domain/spring-boot-server-template-domain-example</module>
+        <module>spring-boot-server-template-webapi</module>
     </modules>
 
     <properties>
@@ -216,17 +217,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>spring-boot-server-template-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>spring-boot-server-template-facade</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>spring-boot-server-template-mapper</artifactId>
+                <artifactId>spring-boot-server-template-webapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -238,9 +229,29 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>spring-boot-server-template-start</artifactId>
+                <artifactId>spring-boot-server-template-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>spring-boot-server-template-domain-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>spring-boot-server-template-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>spring-boot-server-template-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
 
             <dependency>
                 <groupId>junit</groupId>

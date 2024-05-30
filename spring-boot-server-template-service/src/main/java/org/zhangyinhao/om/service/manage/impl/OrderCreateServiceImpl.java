@@ -16,14 +16,12 @@ package org.zhangyinhao.om.service.manage.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zhangyinhao.om.api.req.CreateOrderReq;
-import org.zhangyinhao.om.api.rsp.OrderDTO;
-import org.zhangyinhao.om.service.execute.IOrderService;
+import org.zhangyinhao.om.model.bo.CreateOrderBo;
+import org.zhangyinhao.om.model.bo.OrderItemBo;
+import org.zhangyinhao.om.model.dto.CreateOrderReq;
+import org.zhangyinhao.om.order.service.IOrderService;
 import org.zhangyinhao.om.service.manage.IOrderCreateService;
 
-/**
- * @description: 开启事物的单元
- */
 @Service
 public class OrderCreateServiceImpl implements IOrderCreateService {
 
@@ -33,11 +31,16 @@ public class OrderCreateServiceImpl implements IOrderCreateService {
 
     @Override
     @Transactional
-    public OrderDTO orderCreate(CreateOrderReq createOrderReq) {
+    public OrderItemBo orderCreate(CreateOrderReq createOrderReq) {
+        //服务编排 可能分别调用A,B,C领域的服务
 
         //调用了其他的方法做了一些业务上的检查
 
+        //扣减优惠券、商品,返回优惠券商品信息
+
         //最终执行了创建
-        return exampleService.create(createOrderReq);
+        CreateOrderBo createOrderBo = new CreateOrderBo();
+        //基于返回的信息组合 CreateOrderBo
+        return exampleService.create(createOrderBo);
     }
 }

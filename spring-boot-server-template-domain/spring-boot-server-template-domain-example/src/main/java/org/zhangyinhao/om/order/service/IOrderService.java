@@ -11,13 +11,27 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.zhangyinhao.om.service.manage;
+package org.zhangyinhao.om.order.service;
 
 
+
+import org.zhangyinhao.base.result.PageData;
+import org.zhangyinhao.om.model.bo.CreateOrderBo;
 import org.zhangyinhao.om.model.bo.OrderItemBo;
-import org.zhangyinhao.om.model.dto.CreateOrderReq;
+import org.zhangyinhao.om.model.dto.QueryOrderReq;
 
-public interface IOrderCreateService {
+import java.util.List;
 
-    OrderItemBo orderCreate(CreateOrderReq createBo);
+public interface IOrderService {
+    OrderItemBo getById(Long id);
+
+    List<OrderItemBo> listByName(String name);
+
+    List<OrderItemBo> listByNameAndOrderNo(String name, String orderNO);
+
+    List<OrderItemBo> listAll();
+
+    PageData<OrderItemBo> queryPage(QueryOrderReq queryOrderReq);
+
+    OrderItemBo create(CreateOrderBo createOrderBo);
 }

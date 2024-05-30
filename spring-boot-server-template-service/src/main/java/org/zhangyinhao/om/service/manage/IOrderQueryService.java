@@ -14,10 +14,20 @@
 package org.zhangyinhao.om.service.manage;
 
 
+import org.zhangyinhao.base.result.PageData;
 import org.zhangyinhao.om.model.bo.OrderItemBo;
-import org.zhangyinhao.om.model.dto.CreateOrderReq;
+import org.zhangyinhao.om.model.dto.QueryOrderReq;
 
-public interface IOrderCreateService {
+import java.util.List;
 
-    OrderItemBo orderCreate(CreateOrderReq createBo);
+public interface IOrderQueryService {
+    List<OrderItemBo> listAll();
+
+    List<OrderItemBo> listByName(String userName);
+
+    List<OrderItemBo> listByNameAndOrderNo(String userName, String orderNo);
+
+    PageData<OrderItemBo> queryPage(QueryOrderReq queryOrderReq);
+
+
 }

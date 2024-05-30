@@ -71,13 +71,19 @@
 
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>spring-boot-server-template-mapper</artifactId>
+            <artifactId>spring-boot-server-template-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>spring-boot-server-template-domain-example</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>${project.parent.groupId}</groupId>
-            <artifactId>spring-boot-server-template-facade</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>spring-boot-server-template-model</artifactId>
         </dependency>
+
+
 
     </dependencies>
 

@@ -1,0 +1,57 @@
+/**
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+package org.zhangyinhao.om.order.dal;
+
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+
+@TableName("t_voms_order_example")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Order {
+    @TableId(value = "id",type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 订单好
+     */
+    private String orderNo;
+
+    /**
+     * 下单用户
+     */
+    private String userName;
+
+    /**
+     * 订单状态
+     *
+     * ExampleStatusEnums
+     */
+    private String status;
+
+    @TableField(fill = FieldFill.INSERT, updateStrategy = FieldStrategy.NEVER)
+    private Date createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE,value="modify_time")
+    private Date updateTime;
+
+}
